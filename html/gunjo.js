@@ -186,15 +186,16 @@ const gunjo = async ({img, outputCanvas, config, callback}) => {
 	// 测试图像数据读取正常与否
 	// alert(pixel.data.slice(0,10);
 
-
 	// 载入中灰纹理
 	const middleTexturePixel = getTexturePixelData(middleTextureEl,_width,_height);
+
+	// 载入暗部纹理
 	const darkTexturePixel = getTexturePixelData(darkTextureEl,_width,_height);
 
 	// const split1 = 0.3 * 255;
 	// const split2 = 0.6 * 255;
 
-	const {split1,split2} = style;
+	const { split1, split2 } = style;
 	for (let i = 0; i < pixelData.length; i += 4) {
 
 		
@@ -212,6 +213,8 @@ const gunjo = async ({img, outputCanvas, config, callback}) => {
 
 		// const lbase = 205 + 50 * (textureL/255);
 		lbase = 255;
+
+		// 临时应用暗部纹理顶替
 		lalpha = lalpha + 1 * (darkTexturePixel.data[i + 1]/255 - 0.5);
 		let _r = lr + (lbase - lr) * lalpha;
 		let _g = lg + (lbase - lg) * lalpha;
@@ -237,6 +240,7 @@ const gunjo = async ({img, outputCanvas, config, callback}) => {
 			let alpha = Math.min( 1, (split2 - y) / 30 );
 
 			// alpha = Math.min(alpha,textureL/255);
+			// 应用中间调纹理
 			alpha = alpha + 1.5 * (textureL/255 - 0.5);
 			const alphal = 1 - alpha;
 			_r = _r * alphal + mr * alpha;
@@ -252,6 +256,8 @@ const gunjo = async ({img, outputCanvas, config, callback}) => {
 			const db = 166 + dy;
 
 			let alpha = Math.min( 1, (split1 - y) / 30 );
+
+			// 应用暗部纹理
 			alpha = alpha + 1 * (darkTexturePixel.data[i + 1]/255 - 0.5);
 
 			const alphal = 1 - alpha;
