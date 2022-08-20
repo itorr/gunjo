@@ -65,6 +65,18 @@
 				</div>
 			</div>
 		</div>
+		<div class="tips-box">
+			<p>
+				也可以
+				<a @click="saveDiff3()">生成对比图</a>
+				方便分享
+			</p>
+			<!-- <p>
+				移动端请使用
+				<b>自带浏览器</b>
+				进行保存
+			</p> -->
+		</div>
 	</div>
 	<div class="ui-shadow" v-if="output" v-clock>
 		<div class="output-box">
@@ -77,6 +89,7 @@
 			<div>
 				<a @click="save()">不对比</a>、
 				<a @click="saveDiff()">上下对比图</a>、
+				<a @click="saveDiff2()">左右对比图</a>、
 				<a @click="saveDiff2()">斜切对比图</a>
 				<br>
 				<div class="label-box range-box">
