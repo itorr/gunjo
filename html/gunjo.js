@@ -154,6 +154,7 @@ const gunjo = async ({img, outputCanvas, config, callback}) => {
 			const g = pixel.data[i + 1];
 			const b = pixel.data[i + 2];
 			let y = r * .299000 + g * .587000 + b * .114000;
+			// let y = r * .333 + g * .333 + b * .333;
 			pixel.data[i] = y + (Math.abs(pixel.data[i]-128)/128) * averageLightDiff;
 		}
 
