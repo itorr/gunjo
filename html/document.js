@@ -51,11 +51,11 @@ document.addEventListener('drop',e=>{
 	}
 });
 
-const _blue = (img,style,callback)=>{
+const _gunjo = (img,style,callback)=>{
 
-	clearTimeout(blue.T);
-	blue.T = setTimeout(()=>{
-		blue(img,style,callback);
+	clearTimeout(gunjo.T);
+	gunjo.T = setTimeout(()=>{
+		gunjo(img,style,callback);
 		app.saveData();
 	},100);
 };
@@ -198,7 +198,7 @@ const chooseFile = callback=>{
 
 const init= _=>{
 	app.loading = false;
-	blueInit( _=>{
+	gunjoInit( _=>{
 		const { img } = app.$refs;
 		img.onload = app.setImageAndDraw;
 		if(img.complete) img.onload();
@@ -211,15 +211,15 @@ app = new Vue({
 	data,
 	methods: {
 		init,
-		_blue(ms=300){
+		_gunjo(ms=300){
 			app.runing = true;
 			clearTimeout(app.T)
-			app.T = setTimeout(app.blue,ms)
+			app.T = setTimeout(app.gunjo,ms)
 		},
-		async blue(){
+		async gunjo(){
 			app.runing = true;
 			this.$nextTick(async _=>{
-				await blue({
+				await gunjo({
 					img: app.$refs['img'],
 					outputCanvas: app.$refs['canvas'],
 					config: {
@@ -239,7 +239,7 @@ app = new Vue({
 
 			app.previewWidth = previewWidth;
 			app.previewHeight = previewHeight;
-			await app.blue();
+			await app.gunjo();
 		},
 		chooseFile(){
 			chooseFile(readFileAndSetIMGSrc)
@@ -355,7 +355,7 @@ app = new Vue({
 		style:{
 			deep:true,
 			handler(){
-				this._blue();
+				this._gunjo();
 			}
 		},
 		loading(v){

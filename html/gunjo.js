@@ -45,7 +45,7 @@ const getTexturePixelData = (el,_width,_height)=>{
 }
 
 
-const blue = async ({img, outputCanvas, config, callback}) => {
+const gunjo = async ({img, outputCanvas, config, callback}) => {
 	if (!img || !config) return;
 
 	const configString = [
@@ -55,7 +55,7 @@ const blue = async ({img, outputCanvas, config, callback}) => {
 
 	if (lastConfigString === configString) return;
 
-	console.time('blue');
+	console.time('gunjo');
 
 	lastConfigString = configString;
 
@@ -294,7 +294,7 @@ const blue = async ({img, outputCanvas, config, callback}) => {
 		_width,_height
 	);
 
-	console.timeEnd('blue');
+	console.timeEnd('gunjo');
 	// return canvas.toDataURL('image/png');
 	
 };
@@ -317,7 +317,7 @@ let loadImagePromise = async url=>{
 
 let darkTextureEl;
 let middleTextureEl;
-const blueInit = onOver=>{
+const gunjoInit = onOver=>{
 	loadImage('texture-middle.png',el=>{
 		middleTextureEl = el;
 		loadImage('texture-dark.png',el=>{
