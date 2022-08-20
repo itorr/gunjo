@@ -1,7 +1,7 @@
 /**
  * @author itorr<https://github.com/itorr>
- * @date 2022-06-01
- * @Description One Last Image
+ * @date 2022-08-19
+ * @Description 群青生成器
  * */
 
 
