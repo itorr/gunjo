@@ -139,10 +139,12 @@ const style = {
 	zoom:1,
 	watermark: true,
 	fontSize: 6,
-	watermarkX: 66,
-	watermarkY: 66,
+	watermarkX: 80,
+	watermarkY: 89,
 	split1: 76,
 	split2: 160,
+	title: '庵野秀明',
+	engTitle: 'Anno Kandoku',
 	denoise: true,
 	average: true
 };

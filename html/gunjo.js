@@ -326,6 +326,7 @@ const gunjo = async ({img, outputCanvas, config, callback}) => {
 
 
 	const {watermark,fontSize,watermarkX,watermarkY} = style;
+	const {title = '群青',engTitle = 'YOASOBI'} = style;
 
 	if(watermark){
 		
@@ -336,20 +337,19 @@ const gunjo = async ({img, outputCanvas, config, callback}) => {
 
 		// canvas.style.letterSpacing = `-100px`;
 
-		ctx.textAlign = 'right';
-		ctx.textBaseline = 'middle';
-		ctx.shadowBlur = engfontSize * 0.5;
-		ctx.shadowColor = 'rgba(33,49,180,.5)';
-		ctx.font = `${engfontSize}px robots,sans-serif`;
 		ctx.fillStyle = '#FFF';
-		ctx.fillText('YOASOBI',alignX,alignY);
+		ctx.textAlign = 'right';
+		ctx.textBaseline = 'bottom';
+		ctx.shadowBlur = engfontSize * 1.5;
+		ctx.shadowColor = 'rgba(33,49,180,.4)';
+		ctx.font = `${engfontSize}px robots,sans-serif`;
+		ctx.fillText(engTitle.toUpperCase(),alignX,alignY);
 
-		const title = '群青';
 		const titleLength = title.length;
 		ctx.font = `${titleFontSize}px robots,sans-serif`;
 		for(let i = 0; i < titleLength;i++){
 			const moji = title[i];
-			ctx.fillText(moji,alignX,alignY - titleFontSize * ( titleLength - i + 0.5));
+			ctx.fillText(moji,alignX + engfontSize * 0.12,alignY - titleFontSize * ( titleLength - i + 0.1));
 		}
 
 	}
