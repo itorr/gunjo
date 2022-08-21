@@ -23,7 +23,8 @@
 			@touchend.prevent="diff = false"
 			@mousedown.prevent="toDiff()"
 			@mouseup.prevent="diff = false"
-			@mouseout.prevent="diff = false">
+			@mouseout.prevent="diff = false"
+			@dbclick.prevent="dbclick">
 			<img ref="img" 
 				src="anno.jpg"
 				:src="src" 
@@ -46,6 +47,7 @@
 			<div class="config-box">
 				<div style="padding:14px 0;">
 					<ui-switch v-model="style.average" @input="_gunjo(50)">平均</ui-switch>
+					<ui-switch v-model="style.watermark" @input="_gunjo(50)">水印</ui-switch>
 				</div>
 				<div class="label-box range-box" style="padding:10px 0 4px;">
 					<div class="head">
@@ -62,7 +64,31 @@
 					</div>
 					<input type="range" v-model.number="style.split2"
 						min="130" max="250" step="1">
-				</div>
+					</div>
+					<div class="label-box range-box">
+						<div class="head">
+							<b>fontSize</b>
+							<span v-text="style.fontSize"></span>
+						</div>
+						<input type="range" v-model.number="style.fontSize"
+							min="2" max="10" step="1">
+					</div>
+					<div class="label-box range-box">
+						<div class="head">
+							<b>watermarkX</b>
+							<span v-text="style.watermarkX"></span>
+						</div>
+						<input type="range" v-model.number="style.watermarkX"
+							min="20" max="100" step="1">
+					</div>
+					<div class="label-box range-box">
+						<div class="head">
+							<b>watermarkY</b>
+							<span v-text="style.watermarkY"></span>
+						</div>
+						<input type="range" v-model.number="style.watermarkY"
+							min="20" max="100" step="1">
+					</div>
 			</div>
 		</div>
 		<div class="tips-box">

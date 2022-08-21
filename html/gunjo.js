@@ -205,7 +205,7 @@ const gunjo = async ({img, outputCanvas, config, callback}) => {
 	}
 	pixel = displacePixel;
 	*/
-	
+
 	pixel = config.convoluteName ? convoluteY(
 		pixel,
 		// [
@@ -324,14 +324,35 @@ const gunjo = async ({img, outputCanvas, config, callback}) => {
 	ctx.putImageData(pixel, 0, 0);
 
 
-	// canvas.style.letterSpacing = `-100px`
 
-	// ctx.textAlign = 'center';
-	// ctx.textBaseline = 'middle';
-	// ctx.font = `${_height*0.8}px EVAMatisseClassic,sans-serif`;
-	// ctx.fillStyle = '#FFF';
-	// ctx.fillText('次回予告',_width/2,_height/2, _width * 0.8);
+	const {watermark,fontSize,watermarkX,watermarkY} = style;
 
+	if(watermark){
+		
+		const engfontSize = Math.round(_height*fontSize/100);
+		const titleFontSize = Math.round(engfontSize * 1.5);
+		const alignX = _width * watermarkX / 100;
+		const alignY = _height * watermarkY / 100;
+
+		// canvas.style.letterSpacing = `-100px`;
+
+		ctx.textAlign = 'right';
+		ctx.textBaseline = 'middle';
+		ctx.shadowBlur = engfontSize * 0.5;
+		ctx.shadowColor = 'rgba(33,49,180,.5)';
+		ctx.font = `${engfontSize}px robots,sans-serif`;
+		ctx.fillStyle = '#FFF';
+		ctx.fillText('YOASOBI',alignX,alignY);
+
+		const title = '群青';
+		const titleLength = title.length;
+		ctx.font = `${titleFontSize}px robots,sans-serif`;
+		for(let i = 0; i < titleLength;i++){
+			const moji = title[i];
+			ctx.fillText(moji,alignX,alignY - titleFontSize * ( titleLength - i + 0.5));
+		}
+
+	}
 	// ctx.fillStyle = 'rgba(155,0,0,.7)';
 	// ctx.fillRect(0,0,_width,_height);
 

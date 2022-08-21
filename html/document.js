@@ -137,13 +137,10 @@ const Convolutes = {
 
 const style = {
 	zoom:1,
-	h:0,
-	hajimei: false,
 	watermark: true,
-	convoluteName: '一般',
-	convolute1Diff: true,
-	convoluteName2: null,
-	Convolutes,
+	fontSize: 6,
+	watermarkX: 66,
+	watermarkY: 66,
 	split1: 76,
 	split2: 160,
 	denoise: true,
@@ -205,12 +202,16 @@ const init= _=>{
 	});
 }
 
+const dbclick = e=>{
+	console.log(e)
+}
 
 app = new Vue({
 	el:'.app',
 	data,
 	methods: {
 		init,
+		dbclick,
 		_gunjo(ms=300){
 			app.runing = true;
 			clearTimeout(app.T)
