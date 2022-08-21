@@ -143,8 +143,8 @@ const style = {
 	watermarkY: 89,
 	split1: 76,
 	split2: 160,
-	title: '庵野秀明',
-	engTitle: 'Anno Kandoku',
+	title: '庵野',
+	engTitle: 'Kandoku',
 	denoise: true,
 	average: true
 };

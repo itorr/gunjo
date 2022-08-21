@@ -4,6 +4,8 @@
  * @Description 群青生成器
  * */
 
+const defaultTitle = '群青';
+const defaultEngTitle = 'YOASOBI';
 
 
 const randRange = (a, b) => Math.floor(Math.random() * (b - a) + a);
@@ -326,10 +328,12 @@ const gunjo = async ({img, outputCanvas, config, callback}) => {
 
 
 	const {watermark,fontSize,watermarkX,watermarkY} = style;
-	const {title = '群青',engTitle = 'YOASOBI'} = style;
+	let {title,engTitle} = style;
+
+	if(!title) title = defaultTitle;
+	if(!engTitle) engTitle = defaultEngTitle;
 
 	if(watermark){
-		
 		const engfontSize = Math.round(_height*fontSize/100);
 		const titleFontSize = Math.round(engfontSize * 1.5);
 		const alignX = _width * watermarkX / 100;
