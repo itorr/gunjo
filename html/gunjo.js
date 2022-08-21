@@ -161,6 +161,51 @@ const gunjo = async ({img, outputCanvas, config, callback}) => {
 
 	}
 
+	/* 
+	// 载入置换贴图
+	const displaceTexturePixel = getTexturePixelData(textureDisplaceEl,_width,_height);
+
+	const w = pixel.width;
+	const h = pixel.height;
+	const displacePixel = ctx.createImageData(w, h);
+	displacePixel.data.fill(255);
+	
+	// 从原图获取像素点
+	// for (let sy = 0; sy < h; sy++) {
+	// 	for (let sx = 0; sx < w; sx++) {
+	// 		const i = (sy * w + sx) * 4;
+
+	// 		const _y = -displaceTexturePixel.data[i + 1] + 128;
+	// 		const _x = -displaceTexturePixel.data[i + 2] + 128;
+
+	// 		const oi = i + (_x + _y * w) * 4;
+
+	// 		displacePixel.data[i + 0] = pixel.data[oi + 0];
+	// 		displacePixel.data[i + 1] = pixel.data[oi + 1];
+	// 		displacePixel.data[i + 2] = pixel.data[oi + 2];
+	// 		displacePixel.data[i + 3] = pixel.data[oi + 3];
+	// 	}
+	// }
+
+	// 移动原图像素
+	for (let sy = 0; sy < h; sy++) {
+		for (let sx = 0; sx < w; sx++) {
+			const i = (sy * w + sx) * 4;
+
+			const _y = displaceTexturePixel.data[i + 1] - 128;
+			const _x = displaceTexturePixel.data[i + 2] - 128;
+
+			const oi = i + (_x + _y * w) * 4;
+
+			displacePixel.data[oi + 0] = pixel.data[i + 0];
+			displacePixel.data[oi + 1] = pixel.data[i + 1];
+			displacePixel.data[oi + 2] = pixel.data[i + 2];
+			displacePixel.data[oi + 3] = pixel.data[i + 3];
+		}
+	}
+	pixel = displacePixel;
+	*/
+	
 	pixel = config.convoluteName ? convoluteY(
 		pixel,
 		// [
@@ -180,33 +225,6 @@ const gunjo = async ({img, outputCanvas, config, callback}) => {
 		],
 		ctx
 	) : pixel;
-
-
-	// 载入置换贴图
-	const displaceTexturePixel = getTexturePixelData(textureDisplaceEl,_width,_height);
-
-	const w = pixel.width;
-	const h = pixel.height;
-	const displacePixel = ctx.createImageData(w, h);
-	displacePixel.data.fill(255);
-	
-	for (let sy = 0; sy < h; sy++) {
-		for (let sx = 0; sx < w; sx++) {
-			const i = (sy * w + sx) * 4;
-
-			const _y = -displaceTexturePixel.data[i + 1] + 128;
-			const _x = -displaceTexturePixel.data[i + 2] + 128;
-
-			const oi = i + (_x + _y * w) * 4;
-
-			displacePixel.data[i + 0] = pixel.data[oi + 0];
-			displacePixel.data[i + 1] = pixel.data[oi + 1];
-			displacePixel.data[i + 2] = pixel.data[oi + 2];
-			displacePixel.data[i + 3] = pixel.data[oi + 3];
-		}
-	}
-
-	pixel = displacePixel;
 
 
 	let pixelData = pixel.data;
