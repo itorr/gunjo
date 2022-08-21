@@ -233,15 +233,20 @@ app = new Vue({
 				app.runing = false;
 			})
 		},
-		async setImageAndDraw(){
+		resize(){
 			const { img } = app.$refs;
 			const { naturalWidth, naturalHeight } = img;
-			
+
+			const maxPreviewWidth = Math.min(800,document.body.offsetWidth);
+
 			const previewWidth = Math.min(maxPreviewWidth, naturalWidth);
 			const previewHeight = Math.floor(previewWidth / naturalWidth * naturalHeight);
 
 			app.previewWidth = previewWidth;
 			app.previewHeight = previewHeight;
+		},
+		async setImageAndDraw(){
+			app.resize();
 			await app.gunjo();
 		},
 		chooseFile(){
@@ -415,6 +420,9 @@ const loadFont = async (fontName,fontURL,callback) => {
         callback();
     })
 };
-
-app.init()
+window.addEventListener('resize',_=>{
+	clearTimeout(app.resize.timer);
+	app.resize.timer = setTimeout(app.resize,50);
+});
+app.init();
 // loadFont('EVAMatisseClassic','fonts/EVA-Matisse_Classic.woff2',app.init)
