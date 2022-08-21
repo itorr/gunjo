@@ -1,5 +1,5 @@
 
-![anno Kantoku](simple.jpeg)
+![anno Kantoku](simple.jpg)
 
 # 🎨「群青生成器」群青封面风格生成
 
